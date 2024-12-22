@@ -1,0 +1,97 @@
+/*link handler*/
+a:link {
+    color: rgb(7, 0, 105);
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: rgb(4, 0, 105);
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover {
+    color: rgb(38, 0, 255);
+    background-color: transparent;
+    text-decoration: underline;
+}
+a:active {
+    color: rgb(38, 0, 255);
+    background-color: transparent;
+    text-decoration: underline;
+}
+/*end of links handler*/
+
+.header {
+    text-align: center; 
+    padding: 10px;
+    background: #40434E;
+}
+
+.header h1 {
+    font-size: 40px;
+}
+
+/* link bar */
+.linkbar {
+    overflow: hidden;
+    background-color: #282828;
+}
+
+/* also link bar */
+.linkbar a {
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.linkbar a.right { /* should put link oin the right*/
+    float: right;
+}
+
+.linkbar a:hover {
+    background-color: #4d4d4d;
+    color: black;
+}
+
+/* end of links hanlder */
+
+body {
+    background-color: #525252;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.side {
+    text-align: center;
+    flex: 50%;
+    background-color: #727272;
+    padding: 1px;
+}
+
+/* experymental + i hate myself ;-; */
+/* this works idk i leve this alone*/
+.iframe-container {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Szerokość bazowa kontenera iframe */
+}
+/* this also*/
+.iframe-container iframe {
+    transform: scale(0.95); /* Skalowanie do 80% */
+    transform-origin:center; /* Ustawienie punktu początkowego skalowania */
+    width: 552px; /* Oryginalna szerokość iframe */
+    height: 167px; /* Oryginalna wysokość iframe */
+    border: none;
+    display: block;
+    margin: auto; /* Centrowanie iframe */
+}

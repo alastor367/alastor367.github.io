@@ -25,7 +25,7 @@
 
     <div class="side">
         <h2>Random_Terminal_Game-Ship_Game:</h2>
-        <p>V1</p>
+        <p>Suported on this page doc: V1</p>
     </div>
 
     <div class="nah"></div>
@@ -93,7 +93,7 @@ except Exception as e:
             </div>
         </div>
         <h3>Clear function:</h3>
-        <p>here <strong>'def'</strong> if defines <strong>'cls()'</strong> this fuction will clear terminal if <strong>'debugingtime'</strong> is difrent that 1.</p>
+        <p>here <strong>'def'</strong> defines <strong>'cls()'</strong> this fuction will clear terminal if <strong>'debugingtime'</strong> is different that 1.</p>
         <p>Rest of code is trying to get system name if windows use <strong>'cls'</strong> else use <strong>'clear'</strong>.</p>
         <div class="container">
             <div class="code-container">
@@ -112,13 +112,343 @@ def cls():
             </div>
         </div>
         <h3>Reset Enemy sprite:</h3>
-        <p>This function simply resets the enemy sprites.</p>
+        <p>This function for reseting the enemy sprites.</p>
         <div class="container">
             <div class="code-container">
                 <pre>
 def resetthefspriteforenemy():
     global spritepos
     spritepos = ["   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   "]</pre>
+            </div>
+        </div>
+        <h3>Reset variables after end:</h3>
+        <p>This function is for reseting evry var to basic values. in def function you need to set var to global becouse otherwise it will not consider as global var it will sonsider as local variable.</p>
+        <p>At the end fucntion is calling game <strong>'maingamelogic()'</strong>.</p>
+        <p>(you can use <strong>'global'</strong> like that <strong>'global var1, var2, var3'</strong>)</p>
+        <div class="container">
+            <div class="code-container">
+                <pre>
+def ResetToBasic():
+    global safe_list
+    global list
+    global list2
+    global list3
+    global spritepos
+    global enemyhpnormalmax
+    global curentenemyhp
+    global enemypos
+    global enemycupo
+    global failcheck1
+    global ListNumber
+    global ListLetter
+    global idk
+    global move
+    global aniamtion_is_playing
+    safe_list = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    list = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    list2 = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    list3 = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    spritepos = ["   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   "]
+    enemyhpnormalmax = 3
+    curentenemyhp = 3
+    enemypos = 5
+    enemycupo = enemypos
+    failcheck1 = ["1", "2", "3", "4"]
+    ListNumber = ""
+    ListLetter = ""
+    idk = False
+    move = "Player"
+    aniamtion_is_playing = False
+    maingamelogic()</pre>
+            </div>
+        </div>
+        <h3>Main Game Logic:</h3>
+        <p>Yeach this code is complece that why i lefed comends in that one in short talk this code is handling a game logic + <strong>'list[index]'</strong> is caling list with specifix index in python first item in list have index 0.</p>
+        <p><strong>'.upper()'</strong> makes var a big letter is much easer to chec if idk var Hello == "HELLO" they user can set var Hello to hello and code will run without any problem</p>
+        <div class="container">
+            <div class="code-container">
+                <pre>
+def maingamelogic():
+    try:
+        global idk
+        global move
+        global enemycupo
+        global curentenemyhp
+        global aniamtion_is_playing
+        #ennemy data load before start
+        index = enemycupo
+        spritepos[index] = enemysprite[0]
+        index += 1
+        spritepos[index] = enemysprite[1]
+        index += 1
+        spritepos[index] = enemysprite[2]
+        while True: # game loop
+            ship()
+            if aniamtion_is_playing == False:
+                while True: #make a loop for checking some things
+                    if ListNumber in failcheck1: #check if listnumber is in failcheck list
+                        idk = True
+                        ListN = int(ListNumber) #convert listnumber intro number for listn
+                        break
+                    elif ListNumber == "4":
+                        idk = True
+                        ListN = 4
+                        break
+                    else:
+                        cls()
+                        print("This needs to be a level number")
+                        time.sleep(0.75) #time out for pgram to have some break ;-;
+                        ship()
+                
+                while True: #loop for idk just loop for smt
+                    cls()
+                    ship()
+                    if move == "Player":
+                        if ListN == 1:
+                            # .upper() make for code letter a as A that allow for user to dont need for type capital letter
+                            if ListLetter.upper() in list: # check if leter is in list
+                                index = list.index(str(ListLetter.upper()))
+                                list[index] = " "
+                                move = "Enemy"
+                                break
+                            else: #if smt is in wrong input let player type againt we talk about if player typed a in lev 1 when a in level 1 is destroyed already
+                                idk = False
+                                move = "Player"
+                                break
+                        elif ListN == 2:
+                            if ListLetter.upper() in list2 and ListLetter.upper() not in list: #check if leter is in list and if is isnt in the list before 
+                                index = list2.index(str(ListLetter.upper()))
+                                list2[index] = " "
+                                move = "Enemy"
+                                break
+                            else: #if smt is in wrong input let player type againt we talk about if player typed a in lev 1 when a in level 1 is destroyed already
+                                idk = False
+                                move = "Player"
+                                break
+                        elif ListN == 3:
+                            if ListLetter.upper() in list3 and ListLetter.upper() not in list2: #check if leter is in list and if is isnt in the list before 
+                                index = list3.index(str(ListLetter.upper()))
+                                list3[index] = " "
+                                move = "Enemy"
+                                break
+                            else: #if smt is in wrong input let player type againt we talk about if player typed a in lev 1 when a in level 1 is destroyed already
+                                idk = False
+                                move = "Player"
+                                break
+                        elif ListN == 4:
+                            if ListLetter.upper() in safe_list and ListLetter.upper() not in list3: #logic for enemy demage ;-;
+                                number = safe_list.index(ListLetter.upper())
+                                if number == enemycupo:
+                                    curentenemyhp -= 1
+                                    if curentenemyhp == 0:
+                                        raise Exception("END ALL LOPS")
+                                if number == (enemycupo+1):
+                                    curentenemyhp -= 1
+                                    if curentenemyhp == 0:
+                                        raise Exception("END ALL LOPS")
+                                if number == (enemycupo+2):
+                                    curentenemyhp -= 1
+                                    if curentenemyhp == 0:
+                                        raise Exception("END ALL LOPS")
+                                move = "Enemy"
+                                break
+                            else: #the same but player can miss when enymi isnt in range
+                                idk = False
+                                move = "Player"
+                                break
+                    else:
+                        pass
+                idk = False
+                if aniamtion_is_playing == False:
+                    while move == "Enemy":
+                        if move == "Enemy": #when enemy turn ENEMY CANT SHOT ON NORMAL MODE
+                            if curentenemyhp == enemyhpnormalmax:
+                                if enemycupo == 0:#bro 0 is the up enemy shuldn't go up
+                                    randomdirection = 2 #set direction to down
+                                elif (enemycupo-2) < 0: #when enemy curent position - how many steps if < 0 then force to go down
+                                    randomdirection = 2
+                                elif (enemycupo+4) > 25: #when enemy curent position + 2 height + how many steps is mor ethat 25 force to go up
+                                    randomdirection = 1 #to do: swtch this to 2 steps 
+                                else:
+                                    randomdirection = random.randint(1,2) #1 for up 2 for down in this state only 2 step at the time
+                                if randomdirection == 1: #to understand hy look at def ship(): and on spritepos[]
+                                    #i use index var becouse i like it
+                                    posenemy = enemycupo-2 #this is hanlding how many steps in state he can take
+                                    enemycupo = posenemy #this hanlde enemy also delete = enemy moves when he want 
+                                    #time to clearn enemy old sprite
+                                    resetthefspriteforenemy()
+                                    #time to draw enemy sprite
+                                    index = posenemy
+                                    spritepos[index] = enemysprite[0]
+                                    index += 1
+                                    spritepos[index] = enemysprite[1]
+                                    index += 1
+                                    spritepos[index] = enemysprite[2]
+                                elif randomdirection == 2:
+                                    #i use index var becouse i like it
+                                    posenemy = enemycupo+2 #this is hanlding how many steps in state he can take
+                                    enemycupo = posenemy #this hanlde enemy also delete = enemy moves when he want 
+                                    #time to clearn enemy old sprite
+                                    resetthefspriteforenemy()
+                                    #time to draw enemy sprite
+                                    index = posenemy
+                                    spritepos[index] = enemysprite[0]
+                                    index += 1
+                                    spritepos[index] = enemysprite[1]
+                                    index += 1
+                                    spritepos[index] = enemysprite[2]
+                            elif curentenemyhp == ((enemyhpnormalmax/3)*2):
+                                if enemycupo == 0:#bro 0 is the up enemy shuldn't go up
+                                    randomdirection = 2 #set direction to down
+                                elif (enemycupo-3) < 0: #when enemy curent position - how many steps if < 0 then force to go down
+                                    randomdirection = 2
+                                elif (enemycupo+5) == 25: #when enemy curent position + 2 height + how many steps is mor ethat 25 force to go up
+                                    randomdirection = 1 #to do: swtch this to 2 steps 
+                                else:
+                                    randomdirection = random.randint(1,2) #1 for up 2 for down in this state only 3 step at the time
+                                if randomdirection == 1: #to understand hy look at def ship(): and on spritepos[]
+                                    #i use index var becouse i like it
+                                    posenemy = enemycupo-3 #this is hanlding how many steps in state he can take
+                                    enemycupo = posenemy #this hanlde enemy also delete = enemy moves when he want 
+                                    #time to clearn enemy old sprite
+                                    resetthefspriteforenemy()
+                                    #time to draw enemy sprite
+                                    index = posenemy
+                                    spritepos[index] = enemysprite[3]
+                                    index += 1
+                                    spritepos[index] = enemysprite[4]
+                                    index += 1
+                                    spritepos[index] = enemysprite[5]
+                                elif randomdirection == 2:
+                                    #i use index var becouse i like it
+                                    posenemy = enemycupo+3 #this is hanlding how many steps in state he can take
+                                    enemycupo = posenemy #this hanlde enemy also delete = enemy moves when he want 
+                                    #time to clearn enemy old sprite
+                                    resetthefspriteforenemy()
+                                    #time to draw enemy sprite
+                                    index = posenemy
+                                    spritepos[index] = enemysprite[3]
+                                    index += 1
+                                    spritepos[index] = enemysprite[4]
+                                    index += 1
+                                    spritepos[index] = enemysprite[5]
+                            elif curentenemyhp == (enemyhpnormalmax/3):
+                                if enemycupo == 0:#bro 0 is the up enemy shuldn't go up
+                                    randomdirection = 2 #set direction to down
+                                elif (enemycupo-4) < 0: #when enemy curent position - how many steps if < 0 then force to go down
+                                    randomdirection = 2
+                                elif (enemycupo+6) > 25: #when enemy curent position + 2 height + how many steps is mor ethat 25 force to go up
+                                    randomdirection = 1 #to do: swtch this to 2 steps 
+                                else:
+                                    randomdirection = random.randint(1,2) #1 for up 2 for down in this state only 4 step at the time
+                                if randomdirection == 1: #to understand hy look at def ship(): and on spritepos[]
+                                    #i use index var becouse i like it
+                                    posenemy = enemycupo-4 #this is hanlding how many steps in state he can take
+                                    enemycupo = posenemy #this hanlde enemy also delete = enemy moves when he want 
+                                    #time to clearn enemy old sprite
+                                    resetthefspriteforenemy()
+                                    #time to draw enemy sprite
+                                    index = posenemy
+                                    spritepos[index] = enemysprite[6]
+                                    index += 1
+                                    spritepos[index] = enemysprite[7]
+                                    index += 1
+                                    spritepos[index] = enemysprite[8]
+                                elif randomdirection == 2:
+                                    #i use index var becouse i like it
+                                    posenemy = enemycupo+4 #this is hanlding how many steps in state he can take
+                                    enemycupo = posenemy #this hanlde enemy also delete = enemy moves when he want 
+                                    #time to clearn enemy old sprite
+                                    resetthefspriteforenemy()
+                                    #time to draw enemy sprite
+                                    index = posenemy
+                                    spritepos[index] = enemysprite[6]
+                                    index += 1
+                                    spritepos[index] = enemysprite[7]
+                                    index += 1
+                                    spritepos[index] = enemysprite[8]
+                        else: 
+                            move = "Player"
+                        move = "Player"
+                else:
+                    pass
+            elif aniamtion_is_playing == True:
+                pass
+    except Exception as e:
+        while True:
+            cls()
+            print("Wanna play again? (Type yes or no or number)")
+            print("1.Yes")
+            print("2.No")
+            gameoverevit = str(input("> "))
+            if gameoverevit.upper() == "YES":
+                ResetToBasic()
+                break
+            elif gameoverevit.upper() == "NO":
+                exit()
+            elif gameoverevit.upper() == "N0":
+                exit()
+            elif gameoverevit.upper() == "1":
+                ResetToBasic()
+                break
+            elif gameoverevit.upper() == "2":
+                exit()
+            else:
+                print("Random Error try again")
+                time.sleep(0.75)</pre>
+                </div>
+            </div>
+            <h3>Print Game Board:</h3>
+            <p>This part of code is printing a game board + you dont need to use <strong>'global'</strong> on the start of <strong>'def'</strong> function you can use before editing variable at the end code is calling <strong>'maingamelogic()'</strong> becouse game needs to run in some type of loop.</p>
+            <div class="container">
+                <div class="code-container">
+                    <pre>
+def ship(): #game board dont make sens ik
+    if aniamtion_is_playing == True:
+        pass
+    else:
+        cls()
+        #####("----------------------------------------------------------------------------------------")-just leve this 
+        print("|                                                                                    |1|2|3|Enemy[4]| |  Information   |")
+        print("|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|-=-=-|=-=-=-=-| |=-=-=-=-=-=-=-=-|")
+        print("|                                                                                    ", list[0] , list2[0] , list3[0] , spritepos[0] ,safe_list[0],"|Gamemode: Easy  |")
+        print("|                                                                                    ", list[1] , list2[1] , list3[1] , spritepos[1] ,safe_list[1],"|----------------|")
+        print("|                                                                                    ", list[2] , list2[2] , list3[2] , spritepos[2] ,safe_list[2],"|Your hp:  inf   |") 
+        print("|                                                                                    ", list[3] , list2[3] , list3[3] , spritepos[3] ,safe_list[3],"|Your amo: inf   |")#am = amunition
+        print("|                                                                                    ", list[4] , list2[4] , list3[4] , spritepos[4] ,safe_list[4],"|Shield hp: 0    |")
+        print("|                                                                                    ", list[5] , list2[5] , list3[5] , spritepos[5] ,safe_list[5],"|----------------|")
+        print("|                                                                                    ", list[6] , list2[6] , list3[6] , spritepos[6] ,safe_list[6],"|Enemy hp:",curentenemyhp,"    |")
+        print("|                                                                                    ", list[7] , list2[7] , list3[7] , spritepos[7] ,safe_list[7],"|Enemy am: 0     |")#am = amunition
+        print("|                                                                                    ", list[8] , list2[8] , list3[8] , spritepos[8] ,safe_list[8],"|Shield hp: 0    |")
+        print("|                                                                                    ", list[9] , list2[9] , list3[9] , spritepos[9] ,safe_list[9],"|----------------|")
+        print("|                                                                                    ", list[10], list2[10], list3[10], spritepos[10] ,safe_list[10])
+        print("|                                                                                    ", list[11], list2[11], list3[11], spritepos[11] ,safe_list[11])
+        print("|                                                                                    ", list[12], list2[12], list3[12], spritepos[12] ,safe_list[12])
+        print("|                                                                                    ", list[13], list2[13], list3[13], spritepos[13] ,safe_list[13])
+        print("|                                                                                    ", list[14], list2[14], list3[14], spritepos[14] ,safe_list[14])
+        print("|                                                                                    ", list[15], list2[15], list3[15], spritepos[15] ,safe_list[15])
+        print("|                                                                                    ", list[16], list2[16], list3[16], spritepos[16] ,safe_list[16])
+        print("|                                                                                    ", list[17], list2[17], list3[17], spritepos[17] ,safe_list[17])
+        print("|                                                                                    ", list[18], list2[18], list3[18], spritepos[18] ,safe_list[18])
+        print("|                          )___(                                                     ", list[19], list2[19], list3[19], spritepos[19] ,safe_list[19])
+        print("|                    _______\__\_                                                    ", list[20], list2[20], list3[20], spritepos[20] ,safe_list[20])
+        print("|              ___   |===========\     ___                                           ", list[21], list2[21], list3[21], spritepos[21] ,safe_list[21])
+        print("|        __   [///]__|____________\___[\\\\\]    __       ____                         ", list[22], list2[22], list3[22], spritepos[22] ,safe_list[22])
+        print("|     __[//]__/                            \__[//]_____/   /                         ", list[23], list2[23], list3[23], spritepos[23] ,safe_list[23])
+        print("|    |                                                    /                          ", list[24], list2[24], list3[24], spritepos[24] ,safe_list[24])
+        print("|     \__________________________________________________/                           ", list[25], list2[25], list3[25], spritepos[25] ,safe_list[25])
+        print("|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~","/===============\\")
+        global ListNumber
+        global ListLetter
+        # dont make sense
+        if move == "Player":
+            if idk == False:
+                ListNumber = str(input("Select a level: "))
+            else:
+                ListLetter = str(input("Select a letter: "))
+
+maingamelogic()</pre>
+                </div>
             </div>
         </div>
     </div>

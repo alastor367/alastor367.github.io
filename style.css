@@ -21,6 +21,28 @@ a:active {
     background-color: transparent;
     text-decoration: underline;
 }
+
+.linkbar a:link {
+    color: rgb(145, 145, 145);
+    background-color: transparent;
+    text-decoration: none;
+}
+.linkbar a:visited {
+    color: rgb(145, 145, 145);
+    background-color: transparent;
+    text-decoration: none;
+}
+.linkbar a:hover {
+    color: rgb(145, 145, 145);
+    background-color: transparent;
+    text-decoration: underline;
+}
+.linkbar a:active {
+    color: rgb(145, 145, 145);
+    background-color: transparent;
+    text-decoration: underline;
+}
+
 /*end of links handler*/
 
 hr {
@@ -176,7 +198,9 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     max-width: 60%;
+    max-height: 500px;
     overflow-x: auto;
+    overflow-y: auto;
 }
 
 pre {

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="style.css">
+<html lang="en">
+<head>
+    <title>Alastor367 Website</title>
+</head>
+<meta charset="UTF-8">
+<body>
+    <div class="header">
+        <h1>Random_Terminal_Game-Ship_Game</h1>
+        <p>A website created by <a href="https://github.com/alastor367" target="_blank">me.</a></p>
+    </div>
+
+    <div class="linkbar">
+        <a href="https://github.com/alastor367" target="_blank" class="right">Github</a>
+        <a href="https://x.com/Alastor367" target="_blank" class="right">Twitter</a>
+        <a href="index.html">Home</a>
+        <a href="about_me.html">About me</a>
+        <a href="documentation.html">Documentation</a>
+    </div>
+
+<!--V1code explanation idk this coment is for better code thing-->
+
+    <div class="nah"></div>
+
+    <div class="side">
+        <h2>Random_Terminal_Game-Ship_Game:</h2>
+        <p>V1</p>
+    </div>
+
+    <div class="nah"></div>
+
+    <div class="side2">
+        <h2>V1:</h2>
+        <p><a href="https://github.com/alastor367/Random_Terminal_Game-Ship_Game/blob/main/Python/V1/main.py">Link to full code.</a></p>
+        <h3>Declare imports:</h3>
+        <div class="container">
+            <div class="code-container">
+                <pre>
+import os
+import platform
+import time
+import random</pre>
+            </div>
+        </div>
+        <h3>Declare list's:</h3>
+        <p><strong>'safe_list'</strong>, <strong>'list'</strong>, <strong>'list2'</strong>, <strong>'list3'</strong> they are for map display <strong>'spritepos'</strong> and <strong>'enemysprite'</strong> are for enemy display.</p>
+        <div class="container">
+            <div class="code-container">
+                <pre>
+safe_list = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+list = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+list2 = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+list3 = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
+spritepos = ["   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   "]
+enemysprite = ["  /-\\  ", "<| O |>", "  \-/  ", "  /-\\  ", "<| X |>", "  \-/  ", "  /-\\  ", "<|   |>", "  \-/  "]</pre>
+            </div>
+        </div>
+        <h3>Declare variables:</h3>
+        <p><strong>'enemyhpnormalmax'</strong> && <strong>'curentenemyhp'</strong> are for enemy hp.</p>
+        <p><strong>'enemypos'</strong> && <strong>'enemycupo'</strong></strong> for enemy position.</p>
+        <p><strong>'failcheck1'</strong>, <strong>'ListNumber'</strong>, <strong>'ListLetter'</strong> are for attacking enemy && breking wall.</p>
+        <p><strong>'idk'</strong>, <strong>'move'</strong>, <strong>'aniamtion_is_playing'</strong> are for who move is it and if can move.</p>
+        <div class="container">
+            <div class="code-container">
+                <pre>
+enemyhpnormalmax = 3
+curentenemyhp = 3
+enemypos = 8
+enemycupo = enemypos
+failcheck1 = ["1", "2", "3"]
+ListNumber = ""
+ListLetter = ""
+idk = False
+move = "Player"
+aniamtion_is_playing = False</pre>
+            </div>
+        </div>
+        <h3>Game title + print dificulty selection:</h3>
+        <p><strong>'try'</strong> function is trying to change game title to Ship-Game using os import if any error will be then <strong>'except'</strong> will do nothing about that and game will run normaly.</p>
+        <div class="container">
+            <div class="code-container">
+                <pre>
+print("Select your difuculty")
+print("1.Easy")
+print("2.Normal")
+
+try:
+    os.system("title " + "Ship-Game")
+except Exception as e:
+    pass</pre>
+            </div>
+        </div>
+        <h3>Clear function:</h3>
+        <p>here <strong>'def'</strong> if defines <strong>'cls()'</strong> this fuction will clear terminal if <strong>'debugingtime'</strong> is difrent that 1.</p>
+        <p>Rest of code is trying to get system name if windows use <strong>'cls'</strong> else use <strong>'clear'</strong>.</p>
+        <div class="container">
+            <div class="code-container">
+                <pre>
+def cls():
+    debugingtime = 0
+    if debugingtime != 1:
+        system_name = platform.system()
+        if system_name == "Windows":
+            os.system("cls")
+        else:
+            try:
+                os.system("clear")
+            except Exception as e:
+                print("Error while cls function")</pre>
+            </div>
+        </div>
+        <h3>Reset Enemy sprite:</h3>
+        <p>This function simply resets the enemy sprites.</p>
+        <div class="container">
+            <div class="code-container">
+                <pre>
+def resetthefspriteforenemy():
+    global spritepos
+    spritepos = ["   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   ", "   -   "]</pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

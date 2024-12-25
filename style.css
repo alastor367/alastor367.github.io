@@ -67,6 +67,8 @@ footer {
     background: #40434E;
     margin-right: 150px; 
     margin-left: 150px;
+    word-wrap: break-word; /* break world if too long*/
+    overflow-wrap: break-word; /* break world */
 }
 
 .header h1 {
